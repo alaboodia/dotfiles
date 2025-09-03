@@ -1,0 +1,29 @@
+# System programs
+sudo xbps-install vim bash-completion alacritty nemo firefox rofi feh picom shotwell
+
+# X11 and video packages
+sudo xbps-install xorg libX11-devel libXft-devel libXinerama-devel xf86-video-amdgpu 
+sudo xbps-install xorg xinit libX11-devel libXft-devel libXinerama-devel xf86-video-amdgpu 
+
+# build packages
+sudo xbps-install make git base-devel
+
+# this package will make samba server works on nemo FileExplorer
+sudo xbps-install gvfs-smb
+
+sudo xbps-install pipewire wireplumber alsa-pipewire jack jack-devel alsa-utils pavucontrol libjack-pipewire
+sudo xbps-install linux-firmware
+sudo xbps-install elogind
+sudo xbps-install wireplumber-elogind 
+sudo ln -s /etc/sv/dbus /var/service
+sudo ln -s /etc/sv/elogind/ /var/service
+
+sudo mkdir -p /etc/pipewire/pipewire.conf.d
+sudo ln -s /usr/share/examples/wireplumber/10-wireplumber.conf /etc/pipewire/pipewire.conf.d/
+sudo ln -s /usr/share/examples/pipewire/20-pipewire-pulse.conf /etc/pipewire/pipewire.conf.d/
+
+sudo mkdir -p /etc/alsa/conf.d
+sudo ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf  /etc/alsa/conf.d/
+sudo ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
+
+sudo reboot
